@@ -51,77 +51,67 @@ cd C:\laragon\www
 git clone https://github.com/tu-usuario/pacifiko-test.git
 cd pacifiko-test
 
-Instalar las dependencias de Laravel
-composer install
+Instalar las dependencias de Laravel composer install
 
-Instalar las dependencias de Vue y Vite
-npm install
+Instalar las dependencias de Vue y Vite npm install
 
-Copiar el archivo .env
-cp .env.example .env
+Copiar el archivo .env cp .env.example .env
 
-Generar la clave de la aplicación
-php artisan key:generate
+Generar la clave de la aplicación php artisan key:generate
 
-Configurar el archivo .env con los valores de base de datos y URL
-El archivo .env será enviado por correo con los valores necesarios para facilitar su ejecución.
+Configurar el archivo .env con los valores de base de datos y URL El archivo .env será enviado por correo con los valores necesarios para facilitar su ejecución.
 
-Ejecutar las migraciones y los seeders
-php artisan migrate --seed
+Si estás usando Laragon, XAMPP o WAMP, puedes crear la base de datos  desde phpMyAdmin siguiendo estos pasos:
 
-Iniciar el servidor de desarrollo de Laravel
-php artisan serve
+Abre tu navegador y ve a http://localhost/phpmyadmin
 
-Iniciar el servidor de Vite para Vue
-npm run dev
+En el menú de la izquierda, haz clic en "Nueva" o "New".
 
-Acceder a la aplicación desde el navegador
-La URL predeterminada es http://localhost:8000 Sí se usa Laragon es la siguiente http://pacifiko-test.test
+En el campo "Nombre de la base de datos", escribe: pacifiko_test
+
+En el campo "Cotejamiento" (collation), selecciona: utf8mb4_unicode_ci
+
+Haz clic en el botón "Crear".
+(Para esto hay un archivo llamado database.sql que da el script para crear la base de datos)
+Las tablas se crean con las migraciones.
+
+Ejecutar las migraciones y los seeders php artisan migrate --seed
+
+Iniciar el servidor de desarrollo de Laravel php artisan serve
+
+Iniciar el servidor de Vite para Vue npm run dev
+
+Acceder a la aplicación desde el navegador La URL predeterminada es http://localhost:8000 Sí se usa Laragon es la siguiente http://pacifiko-test.test
 
 INSTALACIÓN Y CONFIGURACIÓN DEL SCRIPT DE ANÁLISIS DE DATOS (PYTHON)
 
-Acceder al directorio de análisis
-cd data_analysis
+Acceder al directorio de análisis cd data_analysis
 
-Crear un entorno virtual de Python
-python -m venv venv
-En Linux/Mac: source venv/bin/activate
-En Windows: venv\Scripts\activate
+Crear un entorno virtual de Python python -m venv venv En Linux/Mac: source venv/bin/activate En Windows: venv\Scripts\activate
 
-Instalar las dependencias necesarias
-pip install -r requirements.txt
+Instalar las dependencias necesarias pip install -r requirements.txt
 
 El archivo requirements.txt contiene:
 
-python-dotenv
-requests
-pymongo
-streamlit
+python-dotenv requests pymongo streamlit
 
 Crear un archivo .env en el directorio data_analysis con las siguientes variables
 
-API_URL=http://pacifiko-test.test/api/compras
-MONGO_URI=conexion_al_cluster_de_mongodb
-MONGO_DB=nombre_de_base_de_datos
-MONGO_COLLECTION=nombre_de_coleccion
+API_URL=http://pacifiko-test.test/api/compras MONGO_URI=conexion_al_cluster_de_mongodb MONGO_DB=nombre_de_base_de_datos MONGO_COLLECTION=nombre_de_coleccion
 
 Este archivo .env será proporcionado por separado.
 
-Ejecutar el script de análisis para insertar o actualizar estadísticas
-python insert_data.py
+Ejecutar el script de análisis para insertar o actualizar estadísticas python insert_data.py
 
 Este script obtiene las compras desde la API de Laravel, calcula:
 
 Producto más vendido
 
-Total de ingresos por día
-y almacena esta información en MongoDB usando upsert para evitar duplicaciones.
+Total de ingresos por día y almacena esta información en MongoDB usando upsert para evitar duplicaciones.
 
-Ejecutar el dashboard de visualización
-streamlit run dashboard.py
+Ejecutar el dashboard de visualización streamlit run dashboard.py
 
 Esto abrirá una pestaña del navegador con un panel de control que permite ver las estadísticas almacenadas.
-
 
 RECOMENDACIONES
 
@@ -167,23 +157,18 @@ Inserción de datos en MongoDB
 
 Dashboard con visualización gráfica simple a través de Streamlit
 
-
 Estructura general del proyecto
 
 El proyecto está dividido en dos partes principales:
 
-Aplicación Laravel (backend + frontend con Vue e Inertia)
-Aquí se encuentra todo el código relacionado con la API, la lógica de negocio y la interfaz web. Los componentes de Vue están organizados dentro de resources/js/Pages, mientras que las rutas están definidas en routes/web.php y routes/api.php. Las migraciones, modelos y seeders están ubicados dentro de database/.
+Aplicación Laravel (backend + frontend con Vue e Inertia) Aquí se encuentra todo el código relacionado con la API, la lógica de negocio y la interfaz web. Los componentes de Vue están organizados dentro de resources/js/Pages, mientras que las rutas están definidas en routes/web.php y routes/api.php. Las migraciones, modelos y seeders están ubicados dentro de database/.
 
-Análisis de datos (Python)
-En la carpeta data_analysis se encuentra el script de Python que se conecta con la API para obtener los datos de compras, calcular estadísticas y almacenarlas en MongoDB. También incluye un pequeño dashboard web hecho con Streamlit para visualizar estas estadísticas de forma simple.
-
-
+Análisis de datos (Python) En la carpeta data_analysis se encuentra el script de Python que se conecta con la API para obtener los datos de compras, calcular estadísticas y almacenarlas en MongoDB. También incluye un pequeño dashboard web hecho con Streamlit para visualizar estas estadísticas de forma simple.
 
 Cómo probar
 
-1. Ingresar a la app en http://pacifiko-test.test o http://localhost:8000
-2. Simular una compra desde la página de productos.
-3. Ir al historial para visualizar las compras realizadas.
-4. Ejecutar el script de análisis con `python insert_data.py`
-5. Ver el panel de estadísticas con `streamlit run dashboard.py`
+Ingresar a la app en http://pacifiko-test.test o http://localhost:8000
+Simular una compra desde la página de productos.
+Ir al historial para visualizar las compras realizadas.
+Ejecutar el script de análisis con python insert_data.py
+Ver el panel de estadísticas con streamlit run dashboard.py
