@@ -16,7 +16,7 @@ storage/logs
 # Ignorar archivos de desarrollo
 .env.example
 
-# No ignores .env
+
 # .env
 
 # Python
