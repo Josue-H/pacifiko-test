@@ -30,9 +30,12 @@ Node.js (compilación de frontend con Vite)
 Python + Streamlit (dashboard de análisis)
 MySQL (base de datos relacional)
 
+Cabe recalcar que los comandos docker exec -it se deben ejecutar en una terminal diferente que en la que se ejecutó el comando:  docker-compose up --build
 
 Comandos necesarios después de iniciar
 Una vez estén levantados los contenedores, ejecutar:
+
+docker exec -it laravel_app composer install
 
 docker exec -it laravel_app php artisan migrate --seed
 
@@ -51,10 +54,6 @@ Laravel	        http://localhost:8010
 Vite frontend	http://localhost:5173
 Streamlit	    http://localhost:8501 (luego de ejecutado el script para análisis de datos)
 MySQL	        Puerto externo: 3307(para no generar problemas con el puerto 3306)
-
-
-Cabe recalcar que los comandos docker exec -it se deben ejecutar en una terminal diferente que en la que se ejecutó el comando:  docker-compose up --build
-
 
 
 Detener y limpiar

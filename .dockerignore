@@ -1,0 +1,24 @@
+# Ignorar node_modules y vendor (reconstruibles)
+node_modules
+vendor
+
+# Ignorar cachés y archivos temporales
+storage/*.key
+storage/framework/*
+!storage/framework/cache
+storage/logs
+*.log
+
+# Ignorar artefactos de sistema
+.DS_Store
+*.swp
+
+# Ignorar archivos de desarrollo
+.env.example
+
+# No ignores .env
+# .env
+
+# Python
+__pycache__/
+*.pyc
