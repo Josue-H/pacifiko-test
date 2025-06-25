@@ -111,7 +111,20 @@ Escalable
 
 Evita la redundancia y mantiene la integridad de los datos.
 
+12. Contenedores y entorno: Docker
 
+Motivo:
+Se utilizó Docker para unificar el entorno de desarrollo, eliminar diferencias entre máquinas y facilitar la evaluación del proyecto sin necesidad de instalar dependencias manualmente (como PHP, Node, MySQL o Python). Todo está encapsulado en servicios definidos dentro de un docker-compose.yml.
+
+Ventajas:
+
+Entorno completamente aislado y reproducible
+
+Base de datos, servidor web, frontend y analítica corriendo en contenedores separados
+
+No se requiere Laragon, XAMPP ni ningún stack local
+
+Compatible con Linux, MacOS y Windows (con WSL)
 
 
 En conjunto, estas decisiones permiten construir una solución modular, mantenible, fácil de probar y evaluar. Cada herramienta fue seleccionada no solo por su popularidad, sino por su aporte directo a la eficiencia en desarrollo y claridad del producto final.

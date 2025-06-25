@@ -4,7 +4,10 @@ import subprocess
 from datetime import datetime
 from collections import defaultdict
 import os
+import re
+import json
 from dotenv import load_dotenv
+
 
 load_dotenv()
 
@@ -16,8 +19,19 @@ COLLECTION_NAME = os.getenv("MONGO_COLLECTION")
 
 def obtener_compras():
     response = requests.get(API_URL)
-    response.raise_for_status()
-    return response.json().get("data", [])
+    texto = response.text
+    start = texto.find('{')
+    if start == -1:
+        raise ValueError("No se encontró JSON en la respuesta")
+
+    json_str = texto[start:]
+    try:
+        data = json.loads(json_str)
+        return data.get("data", [])
+    except json.JSONDecodeError as e:
+        print("Error al parsear JSON limpio:", e)
+        print("JSON parcial detectado:", json_str[:200])
+        raise
 
 def procesar_estadisticas(compras):
     producto_count = defaultdict(int)

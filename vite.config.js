@@ -4,9 +4,11 @@ import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
     server: {
-        host: 'pacifiko-test.test', // 👈 tu dominio local
+        host: '0.0.0.0',
+        port: 5173,
         hmr: {
-            host: 'pacifiko-test.test',
+            host: 'localhost',
+            port: 5173,
         },
     },
     plugins: [
