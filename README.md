@@ -44,7 +44,10 @@ Asegúrese de que los servicios de MySQL y PHP estén corriendo antes de ejecuta
 
 INSTALACIÓN Y CONFIGURACIÓN DE LARAVEL + INERTIA + VUE
 
-Clonar el repositorio
+Si estás usando Laragon, WAMP u otro entorno local similar, asegúrate de clonar el proyecto dentro del 
+directorio adecuado (normalmente "www") para que el servidor pueda encontrarlo sin perderse.
+Por ejemplo para Laragon
+cd C:\laragon\www
 git clone https://github.com/tu-usuario/pacifiko-test.git
 cd pacifiko-test
 
